@@ -9,11 +9,11 @@ import { Button } from "@/components/ui/button";
 
 export const Social = () => {
     return (
-        <div className="col col-span-12 items-center gap-x-2">
-            <div className="col-span-3">
+        <div className="flex flex-col w-full items-center">
+            <div className="mt-2">
                 <Button 
                     size="lg"
-                    className="w-full"
+                    className="min-w-80"
                     variant="outline"
                     onClick={() => {}}
                 >
@@ -21,10 +21,10 @@ export const Social = () => {
                     <span className="pl-1"> Google</span>
                 </Button>
             </div>
-            <div className="col-span-3 mt-2">
+            <div className="mt-2">
                 <Button 
                     size="lg"
-                    className="w-full"
+                    className="min-w-80"
                     variant="outline"
                     onClick={() => {}}
                 >
@@ -32,10 +32,10 @@ export const Social = () => {
                     <span className="pl-1"> LinkedIn</span>
                 </Button>
             </div>
-            <div className="col-span-3 mt-2">
+            <div className="mt-2">
                 <Button 
                     size="lg"
-                    className="w-full"
+                    className="min-w-80"
                     variant="outline"
                     onClick={() => {}}
                 >
@@ -43,11 +43,10 @@ export const Social = () => {
                     <span className="pl-1"> Github</span>
                 </Button>
             </div>
-            <div className="col-span-3 mt-2">
-
+            <div className="mt-2">
                 <Button 
                     size="lg"
-                    className="w-full"
+                    className="min-w-80"
                     variant="outline"
                     onClick={() => {}}
                 >
