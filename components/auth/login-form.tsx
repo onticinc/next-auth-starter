@@ -23,7 +23,7 @@ import { CardWrapper } from './card-wrapper';
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-import { login } from "@/actions/login";
+import { login } from "@/actions/auth/login";
 
 export const LoginForm = () => {
     const [error, setError] = useState<string | undefined>("");

@@ -23,7 +23,7 @@ import { CardWrapper } from './card-wrapper';
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-import { login } from "@/actions/login";
+import { register } from "@/actions/auth/register";
 
 export const RegisterForm = () => {
     const [error, setError] = useState<string | undefined>("");
@@ -44,7 +44,7 @@ export const RegisterForm = () => {
         setSuccess(""); 
 
         startTransition(() => {
-            login(values)
+            register(values)
                 .then((response) => {
                     if ("error" in response) {
                         setError(response.error);
@@ -59,9 +59,9 @@ export const RegisterForm = () => {
 
     return (
         <CardWrapper
-            headerLabel="Welcome"
-            backButtonLabel="Go Back"
-            backButtonHref='/'
+            headerLabel="Create an account"
+            backButtonLabel="Already have an account?"
+            backButtonHref='/auth/login'
             showSocial={true}
         >
             <Form {...form}>
@@ -134,7 +134,7 @@ export const RegisterForm = () => {
                         type="submit"
                         className="w-full"
                     >
-                        Login
+                        Register
                     </Button>
                 </form>
             </Form>
