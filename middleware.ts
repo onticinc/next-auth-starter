@@ -12,6 +12,7 @@ import {
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
+
     
     const { nextUrl } = req;
 
@@ -22,6 +23,13 @@ export default auth((req) => {
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+    console.log("IS LOGGED IN: ", isLoggedIn);
+    console.log("ROUTE: ", req.nextUrl.pathname);
+    console.log("PUBLIC: ", publicRoutes);
+    console.log("AUTH ROUTES: ", authRoutes);
+    console.log("API: ", apiAuthPrefix);
+    console.log("AUTH: ", req.auth);
 
     if (isApiAuthRoute) {
         return;
