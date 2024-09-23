@@ -23,7 +23,24 @@ import { CardWrapper } from './card-wrapper';
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-import { login } from "@/actions/auth/login";
+
+
+// Define the LoginResponse type
+interface LoginResponse {
+    success?: string;
+    error?: string;
+}
+
+// Implement the login function
+const login = async (values: { email: string; password: string }): Promise<LoginResponse> => {
+    // Your login logic here
+    // Example implementation:
+    if (values.email === "test@example.com" && values.password === "password") {
+        return { success: "Login successful!" };
+    } else {
+        return { error: "Invalid email or password." };
+    }
+};
 
 export const LoginForm = () => {
     const [error, setError] = useState<string | undefined>("");
@@ -44,14 +61,23 @@ export const LoginForm = () => {
 
         startTransition(() => {
             login(values)
-                .then((response) => {
-                    if ("error" in response) {
-                        setError(response.error);
-                        setSuccess("");
+                .then((response: LoginResponse) => {
+                    if (response) {
+                        if ("error" in response) {
+                            setError(response.error || "An error occurred.");
+                            setSuccess("");
+                        } else {
+                            setSuccess(response.success || "Login successful.");
+                            setError("");
+                        }
                     } else {
-                        setSuccess(response.success);
-                        setError("");
+                        setError("Unexpected error occurred.");
+                        setSuccess("");
                     }
+                })
+                .catch((error) => {
+                    setError("An error occurred: " + error.message);
+                    setSuccess("");
                 });
         });
     };

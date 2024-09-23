@@ -1,6 +1,5 @@
 /**
- * Array of public routes
- * These routes do not require Authentication
+ * Array of public routes that do not require Authentication
  * @type {string[]}
  */
 
@@ -33,7 +32,6 @@ export const authRoutes = [
  */
 
 export const apiAuthPrefix = "/api/auth";
-
 
 
 
