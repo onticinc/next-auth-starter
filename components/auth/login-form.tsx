@@ -26,11 +26,6 @@ import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/auth/login";
 
 
-// Define the LoginResponse type
-interface LoginResponse {
-    success?: string;
-    error?: string;
-}
 
 
 export const LoginForm = () => {
