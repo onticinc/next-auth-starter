@@ -51,7 +51,7 @@ export const Social = () => {
                     <span className="pl-1"> Github</span>
                 </Button>
             </div>
-            <div className="mt-2">
+            {/* <div className="mt-2">
                 <Button 
                     size="lg"
                     className="min-w-80"
@@ -61,7 +61,7 @@ export const Social = () => {
                     <FaFacebook  className="h-5 w-5" />
                     <span className="pl-1"> Facebook</span>
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
     }

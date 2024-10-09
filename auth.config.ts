@@ -12,8 +12,8 @@ import { getUserByEmail } from "@/data/user";
 export default {
     providers: [
         Linkedin({
-            clientId: process.env.LINKEDIN_ID,
-            clientSecret: process.env.LINKEDIN_SECRET
+            clientId: process.env.LINKEDIN_CLIENT_ID,
+            clientSecret: process.env.LINKEDIN_CLIENT_SECRET
         }),
 
         Github({
@@ -23,7 +23,8 @@ export default {
         Google({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        }),
+        }), 
+        
         Credentials({
             async authorize(credentials) {
                 const validatedFields = LoginSchema.safeParse(credentials);
