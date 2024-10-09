@@ -3,8 +3,9 @@
 import * as z from "zod";
 
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema } from "@/schemas";
 
 import { Input } from "@/components/ui/input";
@@ -29,6 +30,12 @@ import { login } from "@/actions/auth/login";
 
 
 export const LoginForm = () => {
+
+    const searchParams = useSearchParams();
+    const urlError = searchParams.get('error') === "OAuthAccountNotLinked"
+        ? "Email already in use with another provider." : "";
+
+
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
     const [isPending, startTransition] = useTransition();
@@ -47,19 +54,10 @@ export const LoginForm = () => {
 
         startTransition(() => {
             login(values)
-                .then((response: LoginResponse) => {
-                    if (response) {
-                        if ("error" in response) {
-                            setError(response.error || "An error occurred.");
-                            setSuccess("");
-                        } else {
-                            setSuccess(response.success || "Login successful.");
-                            setError("");
-                        }
-                    } else {
-                        setError("Unexpected error occurred.");
-                        setSuccess("");
-                    }
+                .then((data) => {
+                    setError(data?.error);
+                    // TODO: Add when we add 2fa
+                    // setSuccess(data?.success);
                 })
                 .catch((error) => {
                     setError("An error occurred: " + error.message);
@@ -119,7 +117,7 @@ export const LoginForm = () => {
                         />
                     </div>
                     <FormSuccess message={success}/>
-                    <FormError message={error}/>
+                    <FormError message={error || urlError }/>
                     <Button 
                         disabled={isPending}
                         type="submit"
